@@ -6,14 +6,14 @@ void setup() {
 }
 
 ////////////////////////////////////
-// DENON
+// DENON sendDenon
 ////////////////////////////////////
 #define   DENON_KEY_POWER                0x000000000000221C        //  Was: power-on
 #define   DENON_KEY_POWER                0x000000000000211C        //  Was: power-off
 #define   DENON_KEY_MUTE                 0x000000000000203C        //  Was: mute
 
 ///////////////////////////////////
-// VIZIO
+// VIZIO sendNEC/sendNEC(REPEAT,0)
 ///////////////////////////////////
 #define VIZIO_KEY_VOL_DOWN  0x20DFC03F
 #define VIZIO_MENU          0x20DFF20D
@@ -42,14 +42,34 @@ void setup() {
 #define VIZIO_WIDE          0x20DFEE11
 
 
+//////////////////////////////////////
+//  ROKU sendNEC (32bits)
+//////////////////////////////////////
+#define ROKU_HOME            0x5743C03F
+#define ROKU_LEFT            0x57437887
+#define ROKU_RIGHT           0x5743B44B
+#define ROKU_UP              0x57439867
+#define ROKU_DOWN            0x5743CC33
+#define ROKU_PAUSE           0x574332CD
+#define ROKU_STAR            0x57438679
+#define ROKU_OKAY            0x574354AB
+#define ROKU_BACK            0x57436699
+#define ROKU_FASTFORWARD     0x5743AA55
+#define ROKU_REWIND          0x57432CD3
+#define ROKU_REPLAY          0x57431EE1
+
 IRsend irsend;
 
 void loop() {
 //  irsend.sendDenon(KEY_MUTE, DENON_BITS);
-  irsend.sendNEC(VIZIO_MENU, 32);
-  irsend.sendNEC(REPEAT,0);
-  delay(3000);
-  irsend.sendNEC(VIZIO_EXIT, 32);
-  irsend.sendNEC(REPEAT,0);
+//  irsend.sendNEC(VIZIO_MENU, 32);
+//  irsend.sendNEC(REPEAT,0);
+//  delay(3000);
+//  irsend.sendNEC(VIZIO_EXIT, 32);
+//  irsend.sendNEC(REPEAT,0);
+//  delay(5000);
+  irsend.sendNEC(ROKU_PAUSE, 32);
   delay(5000);
+  irsend.sendNEC(ROKU_PAUSE, 32);
+  delay(10000);
 }
